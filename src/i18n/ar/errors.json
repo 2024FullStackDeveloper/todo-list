@@ -1,0 +1,28 @@
+{
+    "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة مرة أخرى",
+    "internalServerError": "حدث خطأ داخلي",
+    "validations": {
+        "emailRequired": "البريد الالكتروني مطلوب",
+        "invalidEmail": "البريد الالكتروني غير صحيح",
+        "passwordRequired": "كلمة المرور مطلوبة",
+        "passwordTooShort": "كلمة المرور ضعيفة يجب الى لاتقل عن 5 خانات",
+        "firstNameRequired": "الاسم الاول مطلوب",
+        "lastNameRequired": "الاسم الاخير مطلوب",
+        "firstNameMustBeOneWord": "الاسم الاول يجب ان يكون كلمة واحدة",
+        "lastNameMustBeOneWord": "الاسم الاخير يجب ان يكون كلمة واحدة"
+    },
+    "auth": {
+        "invalidCredentials": "البريد الالكتروني أو كلمة المرور غير صحيحة",
+        "sessionEnded": "انتهت الجلسة",
+        "unauthorized": "غير مصرح لك بالدخول",
+        "emailNotFound": "البريد الالكتروني غير موجود",
+        "emailAlreadyExists": "البريد الالكتروني موجود بالفعل",
+        "otp": {
+            "otpExpired": "انتهت مدة صلاحية الرمز",
+            "otpInvalid": "الرمز المدخل غير صحيح"
+        }
+    },
+    "profile": {
+        "notFound": "الملف الشخصي غير موجود"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "common": {
+        "success": "Operation completed successfully",
+        "created": "Created successfully",
+        "updated": "Updated successfully",
+        "deleted": "Deleted successfully",
+        "notFound": "Not found",
+        "unauthorized": "Unauthorized",
+        "forbidden": "Forbidden",
+        "badRequest": "Bad request",
+        "internalServerError": "Internal server error",
+        "noContent": "No content",
+        "conflict": "Conflict",
+        "error": "An error occurred"
+    },
+    "auth": {
+        "otp": {
+            "sent": "Otp sent successfully"
+        },
+        "passwordChanged": "Password changed successfully",
+        "registered": "Registered successfully"
+    },
+    "profile": {
+        "updated": "Profile updated successfully"
+    }
+}

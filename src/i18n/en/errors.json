@@ -1,0 +1,28 @@
+{
+    "somethingWentWrong": "Something went wrong",
+    "internalServerError": "Internal server error",
+    "validations": {
+        "emailRequired": "Email is required",
+        "invalidEmail": "Invalid email",
+        "passwordRequired": "Password is required",
+        "passwordTooShort": "Password is too short, must be at least 5 characters",
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "firstNameMustBeOneWord": "First name must be one word",
+        "lastNameMustBeOneWord": "Last name must be one word"
+    },
+    "auth": {
+        "invalidCredentials": "Invalid email or password",
+        "sessionEnded": "Session ended",
+        "unauthorized": "Unauthorized",
+        "emailNotFound": "Email not found",
+        "emailAlreadyExists": "Email already exists",
+        "otp": {
+            "otpExpired": "Otp expired",
+            "otpInvalid": "Otp is invalid"
+        }
+    },
+    "profile": {
+        "notFound": "Profile not found"
+    }
+}
