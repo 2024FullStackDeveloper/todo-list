@@ -9,7 +9,8 @@
         "firstNameRequired": "First name is required",
         "lastNameRequired": "Last name is required",
         "firstNameMustBeOneWord": "First name must be one word",
-        "lastNameMustBeOneWord": "Last name must be one word"
+        "lastNameMustBeOneWord": "Last name must be one word",
+        "nameRequired": "Name is required"
     },
     "auth": {
         "invalidCredentials": "Invalid email or password",
@@ -24,5 +25,13 @@
     },
     "profile": {
         "notFound": "Profile not found"
+    },
+    "task": {
+        "taskTypes": {
+            "alreadyExists": "Task type already exists",
+            "notFound": "Task type not found",
+            "deleteFreeze":"Task type is freezed",
+            "updateFreeze":"Task type is freezed"
+        }
     }
 }

@@ -22,5 +22,12 @@
     },
     "profile": {
         "updated": "Profile updated successfully"
+    },
+    "tasks": {
+        "taskTypes": {
+            "created": "Task type created successfully",
+            "updated": "Task type updated successfully",
+            "deleted": "Task type deleted successfully"
+        }
     }
 }

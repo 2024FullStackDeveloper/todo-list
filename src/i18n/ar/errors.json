@@ -9,7 +9,8 @@
         "firstNameRequired": "الاسم الاول مطلوب",
         "lastNameRequired": "الاسم الاخير مطلوب",
         "firstNameMustBeOneWord": "الاسم الاول يجب ان يكون كلمة واحدة",
-        "lastNameMustBeOneWord": "الاسم الاخير يجب ان يكون كلمة واحدة"
+        "lastNameMustBeOneWord": "الاسم الاخير يجب ان يكون كلمة واحدة",
+        "nameRequired": "الاسم مطلوب"
     },
     "auth": {
         "invalidCredentials": "البريد الالكتروني أو كلمة المرور غير صحيحة",
@@ -24,5 +25,13 @@
     },
     "profile": {
         "notFound": "الملف الشخصي غير موجود"
+    },
+    "task": {
+        "taskTypes": {
+            "alreadyExists": "النوع موجود بالفعل",
+            "notFound": "النوع غير موجود",
+            "deleteFreeze":"لا يمكن حذف هذا النوع",
+            "updateFreeze":"لا يمكن تحديث هذا النوع"
+        }
     }
 }

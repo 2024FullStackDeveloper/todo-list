@@ -18,6 +18,7 @@ A robust RESTful API for managing tasks and user accounts, built with **NestJS**
 - [API Reference](#-api-reference)
   - [Authentication](#authentication)
   - [Profile](#profile)
+  - [Task Types](#task-types)
 - [API Response Format](#-api-response-format)
 - [Internationalization (i18n)](#-internationalization-i18n)
 - [Database Migrations](#-database-migrations)
@@ -34,6 +35,7 @@ A robust RESTful API for managing tasks and user accounts, built with **NestJS**
 - **Password Reset via OTP** — Request an OTP email and reset your password securely
 - **Profile Management** — View and update your own profile
 - **Task Management** — Tasks with title, description, priority levels (`low`, `medium`, `high`, `urgent`), due dates, and completion status
+- **Task Types Management** — Full CRUD for task categories with unique name enforcement, freeze protection to prevent modification/deletion of system types, and active/inactive toggling
 - **Internationalization** — Full i18n support for English (`en`) and Arabic (`ar`)
 - **Standardized API Responses** — Consistent JSON envelope for all endpoints
 - **Zod Validation** — Request body validation using Zod schemas via `nestjs-zod`
@@ -125,9 +127,14 @@ src/
     │   └── interfaces/              # IProfile
     │
     └── task/                        # Task module
+        ├── task.controller.ts       # Task Types CRUD endpoints
+        ├── task.service.ts          # Task Types business logic
         ├── task.module.ts
-        ├── models/                  # Task entity
-        └── enums/                   # Priority enum (low, medium, high, urgent)
+        ├── dto/                     # CreateTaskTypeDto, UpdateTaskTypeDto
+        ├── interfaces/              # ITask, TaskTypeResponse
+        ├── models/                  # Task & TaskTypes entities
+        ├── enums/                   # Priority enum (low, medium, high, urgent)
+        └── constrants/              # Injection token constants
 ```
 
 ---
@@ -278,6 +285,67 @@ All endpoints are prefixed with `/api/v1`.
 | `PUT`  | `/api/v1/profile`  | Yes  | Update current user profile |
 
 > **Auth:** Include the header `Authorization: Bearer <access_token>`
+
+---
+
+### Task Types
+
+| Method   | Endpoint                     | Auth | Description              |
+| -------- | ---------------------------- | ---- | ------------------------ |
+| `GET`    | `/api/v1/tasks/task-types`     | Yes  | List all task types      |
+| `POST`   | `/api/v1/tasks/task-types`     | Yes  | Create a new task type   |
+| `GET`    | `/api/v1/tasks/task-types/:id` | Yes  | Get a task type by ID    |
+| `PUT`    | `/api/v1/tasks/task-types/:id` | Yes  | Update a task type       |
+| `DELETE` | `/api/v1/tasks/task-types/:id` | Yes  | Delete a task type       |
+
+> **Auth:** Include the header `Authorization: Bearer <access_token>`
+
+> **Note:** Task types with `freeze: true` cannot be updated or deleted. Attempting to do so returns a `400 Bad Request`.
+
+#### `POST /api/v1/tasks/task-types`
+
+```json
+{
+  "name": "Bug Fix",
+  "description": "Tasks related to bug fixes",
+  "isActive": true
+}
+```
+
+| Field         | Type      | Required | Description                          |
+| ------------- | --------- | -------- | ------------------------------------ |
+| `name`        | `string`  | Yes      | Unique name for the task type        |
+| `description` | `string`  | No       | Optional description                 |
+| `isActive`    | `boolean` | No       | Whether the type is active (default `true`) |
+
+#### `PUT /api/v1/tasks/task-types/:id`
+
+```json
+{
+  "description": "Updated description",
+  "isActive": false
+}
+```
+
+| Field         | Type      | Required | Description                          |
+| ------------- | --------- | -------- | ------------------------------------ |
+| `description` | `string`  | No       | Updated description                  |
+| `isActive`    | `boolean` | No       | Toggle active status                 |
+
+> **Note:** The `name` field cannot be changed after creation.
+
+#### Task Type Response
+
+```json
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Bug Fix",
+  "description": "Tasks related to bug fixes",
+  "isActive": true,
+  "createdAt": "2026-05-28T21:00:00.000Z",
+  "updatedAt": "2026-05-28T21:00:00.000Z"
+}
+```
 
 ---
 
