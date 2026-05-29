@@ -28,6 +28,9 @@
             "created": "Task type created successfully",
             "updated": "Task type updated successfully",
             "deleted": "Task type deleted successfully"
-        }
+        },
+        "created": "Task created successfully",
+        "updated": "Task updated successfully",
+        "deleted": "Task deleted successfully"
     }
 }

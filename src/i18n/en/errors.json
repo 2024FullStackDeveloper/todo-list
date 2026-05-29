@@ -32,6 +32,12 @@
             "notFound": "Task type not found",
             "deleteFreeze":"Task type is freezed",
             "updateFreeze":"Task type is freezed"
-        }
+        },
+        "taskTypeRequired": "Task type is required",
+        "titleRequired": "Title is required",
+        "priorityRequired": "Priority is required",
+        "dueDateRequired":"Due date is required",
+        "dueDateNotValid":"Due date is not valid",
+        "notFound":"Task not found"
     }
 }

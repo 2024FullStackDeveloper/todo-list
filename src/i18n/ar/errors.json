@@ -32,6 +32,12 @@
             "notFound": "النوع غير موجود",
             "deleteFreeze":"لا يمكن حذف هذا النوع",
             "updateFreeze":"لا يمكن تحديث هذا النوع"
-        }
+        },
+        "taskTypeRequired": "نوع المهمة مطلوب",
+        "titleRequired": "عنوان المهمة مطلوب",
+        "priorityRequired": "أولوية المهمة مطلوبة",
+        "dueDateRequired":"تاريخ الاستحقاق مطلوب",
+        "dueDateNotValid":"تاريخ الاستحقاق غير صحيح",
+        "notFound":"المهمة غير موجودة"
     }
 }
