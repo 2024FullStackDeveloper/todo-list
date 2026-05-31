@@ -34,14 +34,15 @@ A robust RESTful API for managing tasks and user accounts, built with **NestJS**
 - **Token Refresh** — Obtain new access tokens using refresh tokens
 - **Password Reset via OTP** — Request an OTP email and reset your password securely
 - **Profile Management** — View and update your own profile
-- **Task Management** — Tasks with title, description, priority levels (`low`, `medium`, `high`, `urgent`), due dates, and completion status
-- **Task Types Management** — Full CRUD for task categories with unique name enforcement, freeze protection to prevent modification/deletion of system types, and active/inactive toggling
+- **Task Management** — Tasks with title, description, priority levels (`low`, `medium`, `high`, `urgent`), due dates, completion status, and automatic `completedAt` timestamp tracking
+- **Advanced Filtering & Pagination** — Search tasks by text, filter by status or priority, use dynamic multi-column sorting, and receive comprehensive pagination metadata
+- **Secure Scoped Task Types** — Full CRUD for task categories scoped perfectly to the authenticated user. Includes unique name enforcement, freeze protection to prevent modification/deletion of system types, and active/inactive toggling
 - **Internationalization** — Full i18n support for English (`en`) and Arabic (`ar`)
-- **Standardized API Responses** — Consistent JSON envelope for all endpoints
-- **Zod Validation** — Request body validation using Zod schemas via `nestjs-zod`
+- **Standardized API Responses** — Consistent JSON envelope for all endpoints, now including structured pagination metadata
+- **Zod Validation** — Request body and query parameter validation using Zod schemas via `nestjs-zod`
 - **Event-Driven Architecture** — Uses `@nestjs/event-emitter` for decoupled email notifications (welcome emails, OTP codes)
-- **Auto Migrations** — Migrations run automatically on application startup
-- **Database Seeding** — Admin user is seeded on first run
+- **Auto Migrations** — Migrations automatically check for existing schemas and run safely on application startup
+- **Database Seeding** — Admin user and primary task types are seeded automatically
 - **Global Exception Filter** — Centralized error handling with translated messages
 - **URI Versioning** — All endpoints are versioned under `/api/v1/`
 
@@ -349,6 +350,36 @@ All endpoints are prefixed with `/api/v1`.
 
 ---
 
+### Tasks
+
+| Method   | Endpoint                     | Auth | Description                           |
+| -------- | ---------------------------- | ---- | ------------------------------------- |
+| `GET`    | `/api/v1/tasks`                | Yes  | Search and paginate tasks             |
+| `POST`   | `/api/v1/tasks`                | Yes  | Create a new task                     |
+| `GET`    | `/api/v1/tasks/:id`            | Yes  | Get a task by ID                      |
+| `PUT`    | `/api/v1/tasks/:id`            | Yes  | Update a task                         |
+| `DELETE` | `/api/v1/tasks/:id`            | Yes  | Delete a task                         |
+
+#### `GET /api/v1/tasks` (Filtering & Pagination)
+
+Accepts query parameters for advanced searching, filtering, sorting, and pagination:
+
+| Query Param | Type      | Description                                           |
+| ----------- | --------- | ----------------------------------------------------- |
+| `page`      | `number`  | Page number (default: 1)                              |
+| `limit`     | `number`  | Items per page (default: 10, max: 100)                |
+| `search`    | `string`  | Global text search in `title` or `description`        |
+| `sort`      | `string`  | Dynamic multi-sorting (e.g., `createdAt:DESC,priority:ASC`) |
+| `priority`  | `enum`    | Filter by priority (`low`, `medium`, `high`, `urgent`)|
+| `isCompleted`| `boolean`| Filter by completion status                           |
+| `taskTypeId`| `uuid`    | Filter by a specific task type ID                     |
+| `dueDate`   | `date`    | Filter by specific due date                           |
+| `completedAt`| `date`   | Filter by specific completion date                    |
+
+Returns a paginated response including `data` (tasks) and `meta` (pagination info: `itemCount`, `pageCount`, `hasPreviousPage`, `hasNextPage`).
+
+---
+
 ## 📦 API Response Format
 
 All responses follow a standardized JSON envelope:
@@ -375,7 +406,7 @@ All responses follow a standardized JSON envelope:
 | `details.type`     | `"toast"` for simple messages, `"modal"` for content, `"field"` for validation errors |
 | `details.message`  | Translated human-readable message                                           |
 | `details.validations` | Array of field-level validation errors (when applicable)                |
-| `data`             | Response payload (or `null`)                                                |
+| `data`             | Response payload (or `null`). For paginated responses, contains `data` array and `meta` object. |
 | `path`             | The requested endpoint path                                                 |
 
 ---
