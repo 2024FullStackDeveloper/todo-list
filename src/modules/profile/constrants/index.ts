@@ -1,0 +1,1 @@
+export const PROFILE_SERVICE = "PROFILE_SERVICE";  
